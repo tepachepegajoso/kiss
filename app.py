@@ -46,5 +46,5 @@ if st.button("¡Quiero besito!"):
     
     st.image("Aq.gif", caption="¡Listo!", use_column_width=True)
     
-    time.sleep(2.9)
+    time.sleep(4)
     st.rerun()
