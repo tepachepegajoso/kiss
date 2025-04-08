@@ -3,17 +3,16 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from PIL import Image
 import time
-import json
 
-# Cargar credenciales desde secrets
+# Inicializar Firebase desde st.secrets
 if not firebase_admin._apps:
-    firebase_info = st.secrets["firebase"]
+    firebase_info = dict(st.secrets["firebase"])  # 👈 convierte los secrets a dict
     cred = credentials.Certificate(firebase_info)
     firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-# Parámetros de Firebase
+# Parámetros
 collection_name = "KISS"
 document_name = "CLc5jpvARY1LOvqjZWpx"
 campo = "Cantidad"
@@ -38,6 +37,12 @@ if st.button("¡Quiero besito!"):
     doc_ref.update({campo: nueva_cantidad})
     
     st.success(f"Cantidad de besitos actualizada a {nueva_cantidad}")
+    
+    st.image("Aq.gif", caption="¡Listo!", use_column_width=True)
+    
+    time.sleep(2.9)
+    st.rerun()
+
     
     st.image("Aq.gif", caption="¡Listo!", use_column_width=True)
     
